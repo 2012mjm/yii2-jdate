@@ -240,7 +240,7 @@ class DateTime
 			'saturday' => 'شنبه',
 			'sunday' => 'یکشنیه',
 			'monday' => 'دوشنبه',
-			'tuesdat' => 'سه شنبه',
+			'tuesday' => 'سه شنبه',
 			'wednesday' => 'چهارشنبه',
 			'thursday' => 'پنجشنبه',
 			'friday' => 'جمعه',
