@@ -1,6 +1,6 @@
 <?php
 
-namespace jDate;
+namespace mjm\jdate;
 
 /**
  * @author Mohammad Mahdi Gholomian.

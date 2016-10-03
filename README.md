@@ -10,13 +10,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-php composer.phar require --prefer-dist mohammad-mahdy/yii2-jdate "*"
+php composer.phar require --prefer-dist mjm/jdate "*"
 ```
 
 or add
 
 ```
-"mohammad-mahdy/yii2-jdate": "*"
+"mjm/jdate": "*"
 ```
 
 to the require section of your `composer.json` file.
@@ -29,7 +29,7 @@ Once the extension is installed, add it as a component  :
 
 ```php
 'jdate' => [
-	'class' => 'jDate\DateTime'
+	'class' => 'mjm\jdate\DateTime'
 ]
 ```
 
@@ -53,7 +53,7 @@ It is a widget to make a input, box to giver jalali date from user.
 A basic usage:
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'name' => 'datepicker'
 ]) ?>
 ```
@@ -61,7 +61,7 @@ A basic usage:
 If you want set default date set `value`:
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'name' => 'datepicker', 'value' => '1394/01/01'
 ]) ?>
 ```
@@ -69,7 +69,7 @@ If you want set default date set `value`:
 Using a `model`:
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'model' => $model, 'attribute' => 'date'
 ]) ?>
 ```
@@ -77,7 +77,7 @@ Using a `model`:
 Use in `active form`:
 
 ```php
-<?= $form->field($model, 'fieldname')->widget(jDate\DatePicker::className()) ?>
+<?= $form->field($model, 'fieldname')->widget(mjm\jdate\DatePicker::className()) ?>
 ```
 
 ###Datepicker `ClientOptions`###
@@ -124,7 +124,7 @@ Now date picker have 2 theme `default` and `dark`.
 For set theme set `theme` var.
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'model' => $model, 'attribute' => 'date', 'theme' => 'dark'
 ]) ?>
 ```
@@ -142,7 +142,7 @@ $('#your id').trigger('change');
 ####`onHide` Event:
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'model' => $model, 'attribute' => 'date',
 	'ClientOptions' => [
 		'onHide' => 'function(){alert("Datepicker is now hidden!")}'
@@ -152,7 +152,7 @@ $('#your id').trigger('change');
 ####`onSelect` Event:
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'model' => $model, 'attribute' => 'date',
 	'ClientOptions' => [
 		'onSelect' => 'function(){alert("Date selected!")}'
@@ -163,7 +163,7 @@ $('#your id').trigger('change');
 ####`onShow` Event:
 
 ```php
-<?= jDate\DatePicker::widget([
+<?= mjm\jdate\DatePicker::widget([
 	'model' => $model, 'attribute' => 'date',
 	'ClientOptions' => [
 		'onShow' => 'function(){alert("Hello!")}'
