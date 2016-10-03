@@ -177,7 +177,7 @@ class DateTime
      * Copyright (C) 2000  Roozbeh Pournader and Mohammad Toossi
      * Edited by Mohammad Javad Masoudian <info@mjm3d.ir>
      */
-    public static function toGregorianDate($j_y, $j_m, $j_d)
+    public function toGregorianDate($j_y, $j_m, $j_d)
     {
 
         $g_days_in_month = array(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
@@ -358,4 +358,54 @@ class DateTime
 		}
 		return $lastdatep-1;
 	}
+
+	/**
+     * Creates a Unix Timestamp (Epoch Time) based on given parameters
+     * works like php's built in mktime() function.
+     * e.g:
+     * $time = $obj->mktime(0,0,0,2,10,1368);
+     * $obj->date("Y-m-d", $time); //Format and Display
+     * $obj->date("Y-m-d", $time, false, false); //Display in Gregorian !
+     *
+     * You can force gregorian mktime if system default is jalali and you
+     * need to create a timestamp based on gregorian date
+     * $time2 = $obj->mktime(0,0,0,12,23,1989, false);
+     *
+     * @author Sallar Kaboli
+     * @edited by Mohammad Javad Masoudian <info@mjm3d.ir>
+     * @param $hour int Hour based on 24 hour system
+     * @param $minute int Minutes
+     * @param $second int Seconds
+     * @param $month int Month Number
+     * @param $day int Day Number
+     * @param $year int Four-digit Year number eg. 1390
+     * @param $jalali bool (Optional) pass false if you want to input gregorian time
+     * @param $timezone string (Optional) acceps an optional timezone if you want one
+     * @return int Unix Timestamp (Epoch Time)
+     */
+    public function mktime($hour, $minute, $second, $month, $day, $year, $jalali = true, $timezone = 'Asia/Tehran')
+    {
+        //Defaults
+        $month = (intval($month) == 0) ? $this->date('m') : $month;
+        $day   = (intval($day)   == 0) ? $this->date('d') : $day;
+        $year  = (intval($year)  == 0) ? $this->date('Y') : $year;
+
+        //Convert to Gregorian if necessary
+        if ( $jalali === true ) {
+            list($year, $month, $day) = $this->toGregorianDate($year, $month, $day);
+        }
+
+        //Create a new object and set the timezone if available
+        $date = $year.'-'.sprintf("%02d", $month).'-'.sprintf("%02d", $day).' '.$hour.':'.$minute.':'.$second;
+
+        if ( $timezone != null ) {
+            $obj = new \DateTime($date, new \DateTimeZone($timezone));
+        }
+        else {
+            $obj = new \DateTime($date);
+        }
+
+        //Return
+        return $obj->format("U");
+    }
 }
